@@ -22,15 +22,17 @@ with open("../credentials.json") as f:
 
 iEEG_filename = "HUP172_phaseII"
 start_time_usec = 402580 * 1e6
-stop_time_usec = 4028 * 1e6
-electrodes = ["LE10","LE11","LH1","LH2","LH3","LH4"]
+stop_time_usec = 402800 * 1e6
+electrodes = ["LE10","LE11","LH01","LH02","LH03","LH04"]
 
+# %%
 data, fs = get_iEEG_data(username, password, iEEG_filename, start_time_usec, stop_time_usec, select_electrodes=electrodes)
 
 # %% Plot the data
 t_sec = np.linspace(start_time_usec, stop_time_usec, num=data.shape[0]) / 1e6
 fig, ax = plot_iEEG_data(data, t_sec)
 fig.set_size_inches(18.5, 10.5)
+ax.set_title(iEEG_filename)
 fig.show()
 
 # %%
