@@ -4,3 +4,5 @@ requests
 deprecation
 pennprov
 pickle
+matplotlib
+seaborn
