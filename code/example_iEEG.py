@@ -6,6 +6,7 @@ import sys
 sys.path.append('../../ieegpy/ieeg')
 sys.path.append('tools')
 
+import matplotlib.pyplot as plt
 # sets path to one directory up from where code is
 path = "/".join(os.path.abspath(os.getcwd()).split('/')[:-1])
 
@@ -13,7 +14,7 @@ import json
 import numpy as np
 from get_iEEG_data import get_iEEG_data
 from plot_iEEG_data import plot_iEEG_data
-
+from line_length import line_length
 # %%
 with open("../credentials.json") as f:
     credentials = json.load(f)
@@ -35,4 +36,19 @@ fig.set_size_inches(18.5, 10.5)
 ax.set_title(iEEG_filename)
 fig.show()
 
+# %%
+win_size_sec = 5
+
+win_size_ind = int(win_size_sec * fs)
+
+start_range = np.arange(0, len(data), win_size_ind, dtype=int)
+
+ll_arr = np.zeros(len(start_range))
+for i, start_ind in enumerate(start_range):
+    ll_arr[i] = line_length(data[start_ind:(start_ind + win_size_ind)])
+
+fig, ax = plt.subplots()
+ax.plot(start_range/fs, ll_arr)
+ax.set_title("Line Length")
+ax.set_xlabel("Clip Time (sec)")
 # %%
