@@ -1,6 +1,6 @@
 #%%
-# %load_ext autoreload
-# %autoreload 2
+%load_ext autoreload
+%autoreload 2
 import os
 import sys
 sys.path.append('../../ieegpy/ieeg')
@@ -15,6 +15,7 @@ import numpy as np
 from get_iEEG_data import get_iEEG_data
 from plot_iEEG_data import plot_iEEG_data
 from line_length import line_length
+from get_iEEG_duration import get_iEEG_duration
 # %%
 with open("../credentials.json") as f:
     credentials = json.load(f)
@@ -51,4 +52,6 @@ fig, ax = plt.subplots()
 ax.plot(start_range/fs, ll_arr)
 ax.set_title("Line Length")
 ax.set_xlabel("Clip Time (sec)")
+# %%
+get_iEEG_duration(username, password, iEEG_filename)
 # %%
