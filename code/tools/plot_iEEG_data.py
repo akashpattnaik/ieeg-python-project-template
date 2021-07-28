@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 from matplotlib.collections import LineCollection
+import pandas as pd
 
 def plot_iEEG_data(data, t):
     """"
@@ -43,7 +44,13 @@ def plot_iEEG_data(data, t):
 
     segs = []
     for i in range(n_rows):
-        segs.append(np.column_stack((t, data.iloc[:,i])))
+        if isinstance(data, pd.DataFrame):
+            segs.append(np.column_stack((t, data.iloc[:,i])))
+        elif isinstance(data, np.ndarray):
+            segs.append(np.column_stack((t, data[:,i])))
+        else:
+            print("Data is not in valid format")
+
     for i in reversed(range(n_rows)):
         ticklocs.append(i * dr)
 
