@@ -62,7 +62,8 @@ def plot_iEEG_data(data, t):
 
     # # Set the yticks to use axes coordinates on the y axis
     ax.set_yticks(ticklocs)
-    ax.set_yticklabels(data.columns)
+    if isinstance(data, pd.DataFrame):
+        ax.set_yticklabels(data.columns)
 
     ax.set_xlabel('Time (s)')
     return fig, ax
