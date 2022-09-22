@@ -1,8 +1,7 @@
 from ieeg.auth import Session
 import pandas as pd
 import pickle
-from pull_patient_localization import pull_patient_localization
-from clean_labels import clean_labels
+from .clean_labels import clean_labels
 from numbers import Number
 import numpy as np
 
