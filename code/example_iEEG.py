@@ -1,6 +1,6 @@
 #%%
-%load_ext autoreload
-%autoreload 2
+# %load_ext autoreload
+# %autoreload 2
 import os
 import sys
 sys.path.append('../../ieegpy/ieeg')
@@ -16,6 +16,7 @@ from get_iEEG_data import get_iEEG_data
 from plot_iEEG_data import plot_iEEG_data
 from line_length import line_length
 from get_iEEG_duration import get_iEEG_duration
+
 # %%
 with open("../credentials.json") as f:
     credentials = json.load(f)
@@ -36,6 +37,7 @@ fig, ax = plot_iEEG_data(data, t_sec)
 fig.set_size_inches(18.5, 10.5)
 ax.set_title(iEEG_filename)
 fig.show()
+plt.savefig("../figures/test.png")
 
 # %%
 win_size_sec = 5
