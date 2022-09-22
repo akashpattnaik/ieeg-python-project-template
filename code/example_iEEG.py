@@ -1,23 +1,14 @@
 #%%
 # %load_ext autoreload
 # %autoreload 2
-import os
 import sys
 sys.path.append('../../ieegpy/ieeg')
-sys.path.append('tools')
 
 import matplotlib.pyplot as plt
-# sets path to one directory up from where code is
-path = "/".join(os.path.abspath(os.getcwd()).split('/')[:-1])
-
 import json
 import numpy as np
 
 import tools
-# from get_iEEG_data import get_iEEG_data
-# from plot_iEEG_data import plot_iEEG_data
-# from line_length import line_length
-# from get_iEEG_duration import get_iEEG_duration
 
 # %%
 with open("../credentials.json", 'r') as f:
